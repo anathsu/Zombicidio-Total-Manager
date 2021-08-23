@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+  <aura:attribute name="bunkerSelecionado" 	type="String" />
+  <aura:attribute name="bunkersList" 		type="List" />
+    
+  
+
+  <lightning:card variant="Narrow" title="Gestão de Bunkers" iconName="custom:custom9">
+
+    <p>Gestão de Bunkers</p>
+	
+    <div class="slds-clearfix" >
+    	<lightning:button variant="brand-outline" label="Adicionar Humano" title="Adiciona novo humano" onclick="{! c.handleClick }" class="slds-float_right"/>
+    </div>
+    
+
+    <p class="slds-p-horizontal_small">
+        <lightning:combobox 
+                            name="listaBunkers" 
+                            label="Selecione um Bunker" 
+                            value="inProgress" 
+                            placeholder="--- Nenhum Selecionado ---" 
+                            options="{! v.bunkersList }" 
+                            onchange="{! c.handleChange }"
+       />
+    </p>
+
+</lightning:card>
+</aura:component>

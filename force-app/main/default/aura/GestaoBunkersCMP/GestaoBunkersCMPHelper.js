@@ -89,13 +89,20 @@
         ])
     },
 
-    carregaMembros : function( component, event ) {
+    selecionaBunker : function( component, event ) {
         let bunkerSelecionado = event.getParam("value");
-        let action = component.get("c.recuperaBunkerMembros");
-        component.set("v.bunkerSelecionado",bunkerSelecionado);
+        
+        component.set("v.bunkerSelecionado", bunkerSelecionado);
 
+        this.carregaMembros(component, event);
+    },
+
+    carregaMembros : function( component, event ) {
+        let bunkerSelecionado = component.get("v.bunkerSelecionado")
+        
         component.set('v.showSpinner', true);
-
+        let action = component.get("c.recuperaBunkerMembros");
+        
         action.setParams({
             bunkerId : bunkerSelecionado
         });
@@ -159,10 +166,15 @@
             let errors = response.getError();
             if (state === "SUCCESS") {
                 var retorno = response.getReturnValue();
-                
+
                 this.showToast(component, event);
                 console.log('>>> return:: ', retorno);
+
                 component.set('v.showSpinner', false);
+                // component.set('v.showModal', false);
+                this.closeModalHelper(component, event);
+
+                this.carregaMembros(component, event);
             }else{
                 console.log('>>> return error:: ', errors);
             }
@@ -179,5 +191,14 @@
         });
         toastEvent.fire();
     },
+
+    showModalHelper : function(component, event) {
+        component.set("v.showModal",true);
+        this.carregaCriaturas( component, event );
+	},
+    
+    closeModalHelper : function(component, event) {
+        component.set("v.showModal",false);
+	},
     
 })

@@ -7,7 +7,7 @@
 	},
 
     handleChange: function (component, event, helper) {
-        helper.carregaMembros(component, event);
+        helper.selecionaBunker(component, event);
     },
 
     handleChangeCriatura: function (component, event, helper) {
@@ -23,12 +23,12 @@
 	},
 
     showModal : function(component, event, helper) {
-        component.set("v.showModal",true);
-        helper.carregaCriaturas( component, event );
+    
+        helper.showModalHelper( component, event );
 	},
     
     closeModal : function(component, event, helper) {
-        component.set("v.showModal",false);
+        helper.closeModalHelper( component, event );
 	}
 
 })

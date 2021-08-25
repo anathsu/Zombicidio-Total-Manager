@@ -8,7 +8,9 @@
     <aura:attribute name="showModal"        type="Boolean" default="false"/>
 
     <!-- Variaveis do Combobox -->
-    <aura:attribute name="options"          type="List" />
+    <aura:attribute name="options"                  type="List" />
+    <aura:attribute name="optionsCriaturas"         type="List" />
+    <aura:attribute name="criaturaSelecionada"     type="String" />
 
     <!-- Variavel com informações do Bunker selecionado -->
     <aura:attribute name="bunkerInfo"       type="Object"/>
@@ -163,8 +165,15 @@
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:card iconName="standard:lead" title="Criaturas">
                         <p class="slds-p-horizontal_small" >
-                            
+                            <aura:if isTrue="{! v.showSpinner }">
+                                <lightning:spinner alternativeText="Loading" size="medium" />
+                            </aura:if>
+                            <lightning:combobox name="criaturas-combobox" label="Selecione uma criatura" placeholder="Clique aqui para selecionar uma criatura" options="{! v.optionsCriaturas }" onchange="{! c.handleChangeCriatura }"/>
                         </p>
+
+                        <aura:set attribute="footer">
+                            <lightning:button variant="brand" label="Incluir Criatura" title="Clique aqui para incluir uma criatura." onclick="{! c.incluirCriatura }" disabled="{! v.criaturaSelecionada == null }" />
+                        </aura:set>
                     </lightning:card>
                 </div>
             </div>

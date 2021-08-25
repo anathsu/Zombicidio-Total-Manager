@@ -25,6 +25,45 @@
         $A.enqueueAction(action); 
 	},
 
+    carregaCriaturas : function( component, event ) {
+        
+		let action = component.get("c.recuperaCriaturas");
+        let bunkerSelecionado = component.get("v.bunkerSelecionado");
+        component.set('v.showSpinner', true);
+
+        action.setParams({
+            bunkerId : bunkerSelecionado
+        });
+
+
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            let errors = response.getError();
+            if (state === "SUCCESS") {
+                component.set('v.showSpinner', false);
+                
+                var rows = response.getReturnValue();
+                for( var i =0; i < rows.length; i++ ){
+                    var row = rows[i];
+                    row.label     = row.Name;
+                    row.value     = row.Id;
+                }
+                console.log('rows',rows);
+                if( rows != null ){
+                    component.set('v.optionsCriaturas', rows);
+                }
+            }else{
+                console.log('ERROR:: ', errors[0].message)
+            }
+        });
+        $A.enqueueAction(action); 
+	},
+
+    recuperaCriaturaSelecionada : function (component, event ){
+        let criaturaSelecionada = event.getParam("value");
+        component.set("v.criaturaSelecionada", criaturaSelecionada);
+    },
+
     setColumns : function( component ) {
         component.set('v.columns',[
 

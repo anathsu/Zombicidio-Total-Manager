@@ -26,6 +26,16 @@ public class GestaoBunkerCMPController {
         return bunkerToReturn;
     }
 
+    @AuraEnabled
+    public static List<Criatura__c> recuperaCriaturas(String bunkerId){
+        // try {
+            
+        // } catch (Exception e) {
+        //     throw new AuraHandledException(e.getMessage());
+        // }
+        return [SELECT id, name FROM Criatura__c limit 200];
+    }
+
     private static Decimal getPercentualHumanos( List<Criatura__c> criaturas ){
         Decimal percentHumano = 0;
         Decimal totalCriaturas  = criaturas.size();

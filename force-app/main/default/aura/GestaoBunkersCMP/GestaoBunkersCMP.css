@@ -1,3 +1,23 @@
 .THIS .teste{
     text-align: left;
 }
+
+.THIS .bunker-message-ativo{
+    width: 100%;
+    background-color: green;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.THIS .bunker-message-inativo{
+    width: 100%;
+    background-color: darkred;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}

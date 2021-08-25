@@ -36,6 +36,15 @@ public class GestaoBunkerCMPController {
         return [SELECT id, name FROM Criatura__c limit 200];
     }
 
+    @AuraEnabled
+    public static void incluirCriaturaBunker (String bunkerId, String criaturaId){
+        Criatura__c criatura    = new Criatura__c();
+        criatura.Id             = criaturaId;
+        criatura.Bunker__c      = bunkerId;
+
+        update criatura;
+    }
+
     private static Decimal getPercentualHumanos( List<Criatura__c> criaturas ){
         Decimal percentHumano = 0;
         Decimal totalCriaturas  = criaturas.size();

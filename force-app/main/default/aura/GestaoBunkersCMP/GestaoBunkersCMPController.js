@@ -15,7 +15,7 @@
     },
 
     incluirCriatura: function (component, event, helper) {
-        helper.incluirCriatura(component, event);
+        helper.incluirCriaturaHelper(component, event);
     },
 
     viewRecord : function(component, event, helper) {

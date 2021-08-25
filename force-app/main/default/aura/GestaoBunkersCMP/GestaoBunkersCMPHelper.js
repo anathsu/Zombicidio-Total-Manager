@@ -140,5 +140,44 @@
             viewRecordEvent.fire();
         }
     },
+
+    incluirCriaturaHelper : function(component, event) {
+        
+        let action = component.get("c.incluirCriaturaBunker");
+
+        let bunkerSelecionado = component.get("v.bunkerSelecionado");
+        let criaturaSelecionada = component.get("v.criaturaSelecionada");
+        component.set('v.showSpinner', true);
+
+        action.setParams({
+            bunkerId : bunkerSelecionado,
+            criaturaId : criaturaSelecionada
+        });
+
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            let errors = response.getError();
+            if (state === "SUCCESS") {
+                var retorno = response.getReturnValue();
+                
+                this.showToast(component, event);
+                console.log('>>> return:: ', retorno);
+                component.set('v.showSpinner', false);
+            }else{
+                console.log('>>> return error:: ', errors);
+            }
+        });
+        $A.enqueueAction(action); 
+    },
+
+    showToast : function(component, event) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "title": "Sucesso!",
+            "message": "A criatura foi incluida no bunker com sucesso.",
+            "type":"success"
+        });
+        toastEvent.fire();
+    },
     
 })

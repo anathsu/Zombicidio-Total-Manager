@@ -1,0 +1,21 @@
+<template>
+    
+    <lightning-card  title="Hello">
+        <p class="slds-p-horizontal_small">{recordId}</p>
+        <template if:true={bunker.data}>
+            <p class="slds-p-horizontal_small">Nome do Bunker: {name}</p>
+            
+            <p class="slds-p-horizontal_small">Ativo? {ativo}</p>
+        </template>
+        
+
+
+        <lightning-input class="slds-p-horizontal_small" name="input-01" label="Digite seu nome: " value={oi} onchange={changeHandler}>  
+        </lightning-input>
+
+        <lightning-button label="New" slot="actions"></lightning-button>
+        <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>
+    
+</template>

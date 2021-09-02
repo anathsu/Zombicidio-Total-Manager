@@ -1,5 +1,6 @@
 public with sharing class ContagiarBatchable implements Database.Batchable<sObject> {
 
+    //Captura os IDs do Schema.
     private String humanId = Schema.SObjectType.Criatura__c.getRecordTypeInfosByName().get('Humano').getRecordTypeId();
     private String zombieId = Schema.SObjectType.Criatura__c.getRecordTypeInfosByName().get('Zumbi').getRecordTypeId();
 
@@ -8,7 +9,7 @@ public with sharing class ContagiarBatchable implements Database.Batchable<sObje
     public ContagiarBatchable() {}
 
     public Database.QueryLocator start(Database.BatchableContext BC){
-        return Database.getQueryLocator('[SELECT id, Criatura__c.RecordTypeId, Bunker__r.DefesaBunker__c, Bunker__c, (SELECT id, AcrescimoDefesa__c  FROM RecursosCriatura__r) FROM Criatura__c');
+        return Database.getQueryLocator([SELECT id, Criatura__c.RecordTypeId, Bunker__r.DefesaBunker__c, Bunker__c, (SELECT id, AcrescimoDefesa__c  FROM RecursosCriatura__r) FROM Criatura__c]);
     }
   
     public void execute(Database.BatchableContext BC, List<sObject> scope){
@@ -20,7 +21,7 @@ public with sharing class ContagiarBatchable implements Database.Batchable<sObje
         List<Criatura__c> zumList = preencheListaCriaturaRecordtype(zombieId, criList);
 
         for(Criatura__c zum : zumList){
-            for(integer i=0; i<zombiSpread; i++){
+            for(integer i=0; i < zombiSpread; i++){
                 Criatura__c cri = (Criatura__c) Util.GetRandomItem(humList);
                 Decimal defesa = this.getDefense(cri);
                 Integer DiceRoll = Math.mod(Integer.valueof(Math.random()*100000),100)+1;

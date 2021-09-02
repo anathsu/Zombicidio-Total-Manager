@@ -1,4 +1,4 @@
-public class Zumbificacao {
+public class Zumbificacao { //Quando um Humano se transforma em zumbi e tem recursos.
     @InvocableMethod (label='Transforma Zumbi')
     public static void zumbificar(List<id> ids){
         List<Criatura__c> criList = [SELECT id, bunker__r.name, bunker__c, (SELECT id FROM RecursosCriatura__r) FROM Criatura__c WHERE id in :ids];

@@ -161,7 +161,7 @@
             criaturaId : criaturaSelecionada
         });
 
-        action.setCallback(this, function(response) {
+        action.setCallback(this, function(response) { //Resposta
             let state = response.getState();
             let errors = response.getError();
             if (state === "SUCCESS") {

@@ -45,6 +45,7 @@ public class CalloutToSalesforce {
         return true;
     }
 
+    @AuraEnabled(cacheable = true)
     public static ResponseHerois getHeroisBootcamp3(){
         
         ResponseHerois herois = null;
@@ -75,7 +76,9 @@ public class CalloutToSalesforce {
     }
 
     public class ResponseHerois{
+        @AuraEnabled
         public List<Heroi> herois;
+        @AuraEnabled
         public Integer total;
 
         public ResponseHerois() {
@@ -90,10 +93,15 @@ public class CalloutToSalesforce {
         }
     }
 
+    
     public class Heroi{
+        @AuraEnabled
         public String nome;
+        @AuraEnabled
         public String nivel;
+        @AuraEnabled
         public List<Habilidade> habilidades;
+        @AuraEnabled
         public Integer total;
 
         public Heroi(String nome, String nivel) {
@@ -110,8 +118,11 @@ public class CalloutToSalesforce {
         }
     }
 
+
     public class Habilidade{
+        @AuraEnabled
         public String nome;
+        @AuraEnabled
         public String nivel;
 
         public Habilidade(String nome, String nivel) {

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card  title="Lista de Heróis" icon-name="action:new_lead">
+        <template if:true={heroisDados}>
+            <div style="height: 300px;">
+                <lightning-datatable
+                        key-field="id"
+                        data={heroisDados}
+                        columns={columns}>
+                </lightning-datatable>
+            </div>
+        </template>
+    </lightning-card> 
+</template>

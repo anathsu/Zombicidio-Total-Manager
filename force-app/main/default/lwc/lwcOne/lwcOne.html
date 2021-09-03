@@ -3,9 +3,13 @@
     <lightning-card  title="Hello">
         <p class="slds-p-horizontal_small">{recordId}</p>
         <template if:true={bunker.data}>
-            <p class="slds-p-horizontal_small">Nome do Bunker: {name}</p>
+            <h2 class="slds-p-horizontal_small">Nome do Bunker: {name}</h2>
             
-            <p class="slds-p-horizontal_small">Ativo? {ativo}</p>
+            <h2 class="slds-p-horizontal_small">Ativo? {ativo}</h2>
+
+            <h2 class="slds-p-horizontal_small">Capacidade: {capacidade}</h2>
+
+            <h2 class="slds-p-horizontal_small">Nivel de defesa: {defesaBunker}%</h2>
         </template>
         
 

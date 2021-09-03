@@ -1,9 +1,9 @@
 <apex:page standardController="Criatura__c" extensions="EditarCriaturaRecursoPAGEExtension">
-    <apex:form>
-        <apex:pageMessages/>
+    <apex:form >
+        <apex:pageMessages />
 
         <apex:pageBlock title="Tela de edição de criaturas e recursos"> <!-- Funciona como uma DIV -->
-            <apex:pageBlockButtons>
+            <apex:pageBlockButtons >
                 <apex:commandButton action="{!cancelar}" value="Voltar ao registro"/>
                 <apex:commandButton action="{!save}" value="Salvar dados"/>
             </apex:pageBlockButtons>

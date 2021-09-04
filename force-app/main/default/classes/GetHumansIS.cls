@@ -13,40 +13,50 @@ global class GetHumansIS {
             dynamicQuery += ' and Bunker__r.Name IN :bunkers ';
         }
 
-        
         criaturasToReturn = Database.query(dynamicQuery);
-        List<Humano> humanos = new List<Humano>();
-        for(Criatura__c criaturas : criaturasToReturn){
-            Bunker bunker = new Bunker();
-                bunker.nome = criaturas.Bunker__r.Name;
-
-            Humano hum = new Humano();
-                hum.nome 	= criaturas.Name;
-                hum.idade 	= String.valueOf( criaturas.Idade__c );
-                hum.bunker  = bunker;
-
-            humanos.add(hum);
+        HumanosResponse humanos = new HumanosResponse();
+        for(Criatura__c cri : criaturasToReturn){
+            Humano hum = new Humano(cri.name, cri.idade__c, cri.bunker__r.name);
+                hum.nome 	= cri.Name;
+                humanos.add(hum);
         }
 
-        HumanosResponse humanosResponse = new HumanosResponse();
-        	humanosResponse.humanos = humanos;
-        	humanosResponse.total 	= humanos.size();
-
-        return humanosResponse;
+        return humanos;
     }
 
     global class HumanosResponse{
         public List<Humano> humanos;
         public Integer total;
+
+        public HumanosResponse() {
+        	this.humanos = new List<Humano>();
+            this.total = 0;
+        }
+
+        public HumanosResponse add(Humano humano) {
+            humanos.add(humano);
+            this.total++;
+            return this;
+        }
     }
 
     global class Humano{
         public String nome;
-        public String idade;
+        public Decimal idade;
         public Bunker bunker;
+
+        public Humano(String nome, Decimal idade, String bunkerName) {
+            this.nome = nome;
+            this.idade = idade;
+            this.bunker = new Bunker(bunkerName);
+        }
     }
 
     global class Bunker{
         public String nome;
+
+        public Bunker(String nome) {
+            this.nome = nome;
+        }
     }
 }

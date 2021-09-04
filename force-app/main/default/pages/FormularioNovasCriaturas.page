@@ -1,0 +1,30 @@
+<apex:page showHeader="false">
+    <!-- <apex:form id="changeStatusForm">
+        <apex:pageBlock >
+            <apex:pageMessages />
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Salvar Criatura" action="{!save}"/>
+            </apex:pageBlockButtons>
+
+            <apex:inputField value="{!criatura.name}"/> <p/>
+
+        </apex:pageBlock>
+    </apex:form> -->
+
+
+    <!-- Trabalhando com aura -->
+    <apex:includeLightning /> <!-- Usado para utilizar componentes do lightning -->
+    <div id="lightning" /> <!-- É necessário ter uma div com id chamada lightning -->
+
+    <script>
+        &Lightning.use("c:formularioCriaturasApp", function() {
+            &Lightning.createComponent("c:formularioCriaturas",
+                "",
+                "lightning",
+                function(cmp) {
+                    console.log("O componente foi carregado!");
+                }
+            );
+        });
+    </script>
+</apex:page>

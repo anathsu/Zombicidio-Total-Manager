@@ -2,10 +2,11 @@ public class VacinaSchedulable implements Schedulable{
     private String humanId = Schema.SObjectType.Criatura__c.getRecordTypeInfosByName().get('Humano').getRecordTypeId();
     
     public void execute(SchedulableContext SC) {
+        vacinar();
     }
 
     public void vacinar(){
-        List<Criatura__c> zombieList = [SELECT id, RecordTypeId, Tipo_do_Zumbi__c, Data_de_Zumbificacao__c FROM Criatura__c where RecordTypeId = '0125e000000qYv8AAE'];
+        List<Criatura__c> zombieList = [SELECT id, RecordTypeId, Tipo_do_Zumbi__c, Data_de_Zumbificacao__c FROM Criatura__c where RecordTypeId = '0125e000000qYv8AAE' LIMIT 100];
 
         Decimal potenciaAntigeno = 0;
         Decimal ac = 0;
@@ -18,19 +19,14 @@ public class VacinaSchedulable implements Schedulable{
                     zumbi.RecordTypeId = humanId;
                     zumbi.Tipo_do_Zumbi__c = null;
                     zumbi.Data_de_Zumbificacao__c = null;
-                    // System.debug(humanId);
                 }
-                // }else{
-                //     System.debug('Antígeno Não Funcionou!');
-                // }
             }
 
             System.debug('Quantidade de sucesso: '+ ac);
             System.debug('Tamanho da Lista: '+zombieList.size());
-            
         }else{
             System.debug('Lista de zumbis vazia!');
         }
+        update zombieList;
     }
-
 }

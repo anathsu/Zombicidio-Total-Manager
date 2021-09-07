@@ -1,6 +1,6 @@
 <aura:documentation>
 	<aura:description>Documentation</aura:description>
 	<aura:example name="ExampleName" ref="exampleComponentName" label="Label">
-		Example Description
+		<!-- Formulario para ser integrado a uma pagina visualforce -->
 	</aura:example>
 </aura:documentation>

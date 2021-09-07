@@ -16,4 +16,6 @@
         </aura:set>
 
     </lightning:card>
+
+    <c:lwcOne></c:lwcOne>
 </aura:component>	

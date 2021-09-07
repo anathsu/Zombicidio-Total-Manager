@@ -1,4 +1,4 @@
-<apex:page showHeader="false">
+<apex:page showHeader="false" controller="FormularioNovasCrisVFPAGEcontroller">
     <!-- <apex:form id="changeStatusForm">
         <apex:pageBlock >
             <apex:pageMessages />
@@ -13,18 +13,22 @@
 
 
     <!-- Trabalhando com aura -->
-    <apex:includeLightning /> <!-- Usado para utilizar componentes do lightning -->
-    <div id="lightning" /> <!-- É necessário ter uma div com id chamada lightning -->
+
+    <!-- Usado para utilizar componentes do lightning -->
+    <apex:includeLightning />
+
+    <!-- É necessário ter uma div com id chamada lightning -->
+    <div id="lightning" />
 
     <script>
-        &Lightning.use("c:formularioCriaturasApp", function() {
-            &Lightning.createComponent("c:formularioCriaturas",
-                "",
-                "lightning",
-                function(cmp) {
-                    console.log("O componente foi carregado!");
-                }
-            );
+        $Lightning.use("c:formularioCriaturasApp", function() {
+          $Lightning.createComponent("c:formulariosCriaturas",
+              "",
+              "lightning",
+              function(cmp) {
+                console.log("Nosso componente foi carregado!");
+              }
+          );
         });
     </script>
 </apex:page>

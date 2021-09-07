@@ -1,21 +1,16 @@
 <aura:component>
 
-    <aura:attribute name="nome" type="String" />
-    <aura:attribute name="idade" type="String" />
+    <aura:attribute name="nome"     type="String" />
+    <aura:attribute name="idade"    type="String" />
 
-    <lightning:card iconName="standard:contact" title="Formulário de Criaturas">
+    <lightning:card iconName="standard:contact" title="Fomulario de criação de criatura">
         <div class="slds-p-around_medium">
-            
-                <lightning:input name="inputNome" value="{!v.nome}" label="Nome da Criatura" placeholder="Digite seu nome" />
-                <lightning:input name="inputIdade" value="{!v.idade}" label="Idade da Criatura" placeholder="Digite sua idade" />
-    
+            <lightning:input name="inputName" value="{!v.nome}" label="Nome" placeholder="digite seu nome..."/>
+            <lightning:input name="inputIdade" value="{!v.idade}" label="Idade" placeholder="digite sua idade..."/>
         </div>
 
         <aura:set attribute="footer">
             <lightning:button label="Criar Criatura" onclick=""/>
         </aura:set>
-
     </lightning:card>
-
-    <c:lwcOne></c:lwcOne>
-</aura:component>	
+</aura:component>
